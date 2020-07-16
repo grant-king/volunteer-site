@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class VolunteerRegistrarConfig(AppConfig):
-    name = 'volunteer_registrar'
+class VolunteerRegisterConfig(AppConfig):
+    name = 'volunteer_register'
