@@ -16,7 +16,7 @@ def template_detail(request, template_id):
 
 def submission_detail(request, submission_id):
     submission = ApplicationSubmission.objects.get(pk=submission_id)
-    questions = Question.objects.filter(application_template_id=submission.application_template)
+    questions = Question.objects.filter(application_template_id=submission.application_template).filter(answer__application_submission_id=submission_id)
     answers = Answer.objects.filter(application_submission_id=submission_id)
     qa = zip(questions, answers)
     html_qa = "<br>".join([f'{question.question_text}: {answer.answer_text}' for question, answer in qa])
