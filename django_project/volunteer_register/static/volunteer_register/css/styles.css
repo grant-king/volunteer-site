@@ -1,0 +1,26 @@
+.card {
+  background-color: rgba(255,255,255,0);
+}
+
+.card p {
+  margin-bottom: 0px;
+}
+
+#tag-badge {
+  margin: 2px;
+}
+
+.col-1.align-self-center {
+}
+
+#entry-section {
+}
+
+#entry-section {
+  align-self: center;
+}
+
+#entry-text-section {
+  margin: 2px;
+}
+
