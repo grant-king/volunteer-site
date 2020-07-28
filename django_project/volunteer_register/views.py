@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from .models import ApplicationTemplate, ApplicationSubmission, Question, Answer
 
 def index(request):
-    return HttpResponse("Hello, volunteers. You're at the home page.")
+    all_templates = ApplicationTemplate.objects.all()
+    context = {'all_templates': all_templates}
+    return render(request, 'volunteer_register/index.html', context)
 
 def register(request):
     return HttpResponse("Hello, volunteers. You're at the registration index.")

@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>volunteer-site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'volunteer_register/css/styles.css' %}">
+</head>
+
+<body>
+    <div>
+        <div class="header-blue" style="background-image: url(&quot;{% static 'volunteer_register/img/header_bg.jpg' %}&quot;);background-color: rgb(255,255,255);background-position: top;background-size: auto;background-repeat: no-repeat;">
+            <div class="row">
+                <div class="col text-right"><a class="btn btn-warning btn-lg" role="button" style="margin: 20px;">Create New Application</a></div>
+            </div>
+            <div class="container hero" style="margin-top: 0px;">
+                <div class="row">
+                    <div class="col text-center" style="margin-top: -88px;"><img src="{% static 'volunteer_register/img/volley_title.png' %}"></div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 0px;">
+                <div class="col">
+                    <div class="form-group text-center" style="margin-bottom: 120px;margin-top: 40px;"><label for="search-field" style="margin: 15px;"><i class="fa fa-search"></i></label><input class="form-control-lg search-field" type="search" id="search-field" name="search" style="background-color: rgba(255,255,255,0.5);" placeholder="search organizations"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-9 col-sm-12 col-md-12 col-lg-10 col-xl-9 text-left">
+            <h2 style="margin: 20px;">Browse Applications</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-9 text-left" style="background-color: rgba(108,168,169,0.29);">
+            <div class="row">
+                <div class="col-1" id="entry-section"><img src="{% static 'volunteer_register/img/falling_rocks(2).jpg' %}" width="60px" height="60px"></div>
+                <div class="col-4" id="entry-section">
+                    <p class="text-muted" id="entry-text-section">Organization Name</p>
+                    <p class="border-primary" id="entry-text-section">Technical Services</p>
+                    <p id="entry-text-section">Volunteer Application</p>
+                </div>
+                <div class="col" id="entry-section"><button class="btn btn-outline-dark btn-sm" id="tag-badge" type="button">Category Tag</button><button class="btn btn-outline-dark btn-sm" id="tag-badge" type="button">Category</button><button class="btn btn-outline-dark btn-sm" id="tag-badge"
+                        type="button">Tag</button><button class="btn btn-outline-dark btn-sm" id="tag-badge" type="button">Organization</button></div>
+                <div class="col-1" id="entry-section">
+                    <p>100 submissions</p>
+                </div>
+                <div class="col text-right" id="entry-section"><button class="btn btn-info btn-lg" type="button">Apply Now</button></div>
+            </div>
+        </div>
+    </div>
+    {% for application in  all_templates %}
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-9 text-left" style="background-color: rgba(108,168,169,0.29);">
+            <div class="row">
+                <div class="col-1" id="entry-section"><img src="{% static 'volunteer_register/img/falling_rocks(2).jpg' %}" width="60px" height="60px"></div>
+                <div class="col-4" id="entry-section">
+                    <p class="text-muted" id="entry-text-section">{{ application.organization }}</p>
+                    <p class="border-primary" id="entry-text-section">Technical Services</p>
+                    <p id="entry-text-section">{{ application.name }}</p>
+                </div>
+                <div class="col" id="entry-section"><button class="btn btn-outline-dark btn-sm" id="tag-badge" type="button">Category Tag</button><button class="btn btn-outline-dark btn-sm" id="tag-badge" type="button">Category</button><button class="btn btn-outline-dark btn-sm" id="tag-badge"
+                        type="button">Tag</button><button class="btn btn-outline-dark btn-sm" id="tag-badge" type="button">Organization</button></div>
+                <div class="col-1" id="entry-section">
+                    <p>100 submissions</p>
+                </div>
+                <div class="col text-right" id="entry-section"><button class="btn btn-info btn-lg" type="button">Apply Now</button></div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
