@@ -20,11 +20,12 @@ class ApplicationTemplate(models.Model):
     subject = models.CharField(max_length=50)
     organization = models.CharField(max_length=50)
     assignment = models.CharField(max_length=100)
-    image = models.ImageField(default='default.jpg', upload_to='application_pics')
+    job_description = models.TextField()
+    image = models.ImageField(default='default.jpg', upload_to='application_pics', blank=True)
     background_color = models.ForeignKey(Color, on_delete=models.CASCADE)
     category_tags = models.ManyToManyField(CategoryTag)
-    accepted_registrations = models.IntegerField(default=0)
     max_registrations = models.IntegerField(default=2)
+    accepted_registrations = models.IntegerField(default=0, blank=True)
 
     def __str__(self):
         return f'{self.subject}: {self.assignment}'
