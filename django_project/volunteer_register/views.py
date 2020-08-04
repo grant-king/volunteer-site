@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import ApplicationTemplate, ApplicationSubmission, Question, Answer
+from .forms import ApplicationTemplateForm
 
 def index(request):
     all_templates = ApplicationTemplate.objects.all()
@@ -26,5 +27,17 @@ def submission_detail(request, submission_id):
 
 def all_templates(request):
     template_list = ApplicationTemplate.objects.all()
-    html_template_list = "<br>".join([template.name for template in template_list])
+    html_template_list = "<br>".join([template.subject for template in template_list])
     return HttpResponse(f"This is the categorical view for all application templates:<br><b>{html_template_list}</b>")
+
+def new_template(request):
+    if request.method == 'POST':
+        form = ApplicationTemplateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Your new application template has been created.')
+            return redirect('index')
+    else:
+        form = ApplicationTemplateForm()
+
+    return render(request, 'volunteer_register/new_applicationtemplate.html', {'form': form})
