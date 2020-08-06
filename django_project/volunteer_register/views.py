@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib import messages
 from .models import ApplicationTemplate, ApplicationSubmission, Question, Answer
-from .forms import ApplicationTemplateForm
+from .forms import ApplicationTemplateForm, AddQuestionForm
 
 def index(request):
     all_templates = ApplicationTemplate.objects.all()
@@ -32,12 +33,18 @@ def all_templates(request):
 
 def new_template(request):
     if request.method == 'POST':
-        form = ApplicationTemplateForm(request.POST)
-        if form.is_valid():
-            form.save()
+        info_form = ApplicationTemplateForm(request.POST, request.FILES)
+        question_form = AddQuestionForm(request.POST)
+        if info_form.is_valid() and question_form.is_valid():
+            new_app_template = info_form.save()
+            for question_field_text in question_form.cleaned_data.values():
+                if question_field_text != '':
+                    new_question = Question(application_template=new_app_template, question_text=question_field_text).save()
             messages.success(request, f'Your new application template has been created.')
             return redirect('index')
     else:
-        form = ApplicationTemplateForm()
+        info_form = ApplicationTemplateForm()
+        question_form = AddQuestionForm()
 
-    return render(request, 'volunteer_register/new_applicationtemplate.html', {'form': form})
+    return render(request, 'volunteer_register/new_applicationtemplate.html', {'info_form': info_form, 'question_form': question_form})
+
