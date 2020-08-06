@@ -1,12 +1,13 @@
 from django.db import models
 
 class Color(models.Model):
+    display_name = models.CharField(max_length=25)
     red = models.PositiveSmallIntegerField()
     green = models.PositiveSmallIntegerField()
     blue = models.PositiveSmallIntegerField()
 
     def __str__(self):
-        return f'{self.red}, {self.green}, {self.blue}'
+        return f'{self.display_name}'
 
 
 class CategoryTag(models.Model):
@@ -43,11 +44,11 @@ class ApplicationSubmission(models.Model):
 
 
 class Question(models.Model):
-    application_template = models.ForeignKey(ApplicationTemplate, on_delete=models.CASCADE)
+    application_template = models.ForeignKey(ApplicationTemplate, on_delete=models.CASCADE, related_name='questions')
     question_text = models.CharField(max_length=200)
 
     def __str__(self):
-        return f'{self.application_template.name[:10]} - {self.question_text}'
+        return f'{self.application_template.subject[:10]} - {self.question_text}'
 
 
 class Answer(models.Model):
