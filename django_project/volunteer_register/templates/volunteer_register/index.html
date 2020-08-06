@@ -14,6 +14,15 @@
 
 <body>
     <div>
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    <div>
         <div class="header-blue" style="background-image: url(&quot;{% static 'volunteer_register/img/header_bg.jpg' %}&quot;);background-color: rgb(255,255,255);background-position: top;background-size: auto;background-repeat: no-repeat;">
             <div class="row">
                 <div class="col text-right"><a class="btn btn-warning btn-lg" role="button" style="margin: 20px;">Create New Request</a></div>
